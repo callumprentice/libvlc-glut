@@ -1,6 +1,8 @@
 vlc/*
 !vlc/README.md
 
+build64/*
+
 *.obj
 *.gch
 *.pch
