@@ -123,14 +123,14 @@ void glutResize(int width, int height)
     free(gVideoBuffer);
     gVideoBuffer = new unsigned char[gTextureWidth * gTextureHeight * gTextureDepth];
 
-	if (gLibVLCMediaPlayer)
-	{
-		gVLCCallbackContext.texture_pixels = gVideoBuffer;
-		gVLCCallbackContext.mp = gLibVLCMediaPlayer;
+    if (gLibVLCMediaPlayer)
+    {
+        gVLCCallbackContext.texture_pixels = gVideoBuffer;
+        gVLCCallbackContext.mp = gLibVLCMediaPlayer;
 
-		libvlc_video_set_callbacks(gLibVLCMediaPlayer, lock, unlock, display, &gVLCCallbackContext);
-		libvlc_video_set_format(gLibVLCMediaPlayer, "RV32", gTextureWidth, gTextureHeight, gTextureWidth * gTextureDepth);
-	}
+        libvlc_video_set_callbacks(gLibVLCMediaPlayer, lock, unlock, display, &gVLCCallbackContext);
+        libvlc_video_set_format(gLibVLCMediaPlayer, "RV32", gTextureWidth, gTextureHeight, gTextureWidth * gTextureDepth);
+    }
 
     glViewport(0, 0, width, height);
     glOrtho(0.0f, width, height, 0.0f, -1.0f, 1.0f);
@@ -172,24 +172,24 @@ void glutIdle()
 {
     if (gVideoBuffer != 0 && gTextureWidth != 0 && gTextureHeight != 0)
     {
-		if (gLibVLCMedia == 0)
-		{
-			playMedia(gMediaURL);
-		}
+        if (gLibVLCMedia == 0)
+        {
+            playMedia(gMediaURL);
+        }
 
-		glTexSubImage2D(GL_TEXTURE_2D, 0,
-			0, 0,
-			gTextureWidth, gTextureHeight,
-			GL_BGRA_EXT,
-			GL_UNSIGNED_BYTE,
-			gVideoBuffer);
+        glTexSubImage2D(GL_TEXTURE_2D, 0,
+                        0, 0,
+                        gTextureWidth, gTextureHeight,
+                        GL_BGRA_EXT,
+                        GL_UNSIGNED_BYTE,
+                        gVideoBuffer);
 
-		glutPostRedisplay();
-	}
-	else
-	{
-		std::cout << "waiting for buffer to be ready..." << std::endl;
-	}
+        glutPostRedisplay();
+    }
+    else
+    {
+        std::cout << "waiting for buffer to be ready..." << std::endl;
+    }
 }
 
 void glutKeyboard(unsigned char key, int x, int y)
@@ -228,9 +228,9 @@ int main(int argc, char* argv[])
 
     if (initVLC())
     {
-		gMediaURL = "http://jell.yfish.us/media/jellyfish-10-mbps-hd-h264.mkv";
+        gMediaURL = "http://jell.yfish.us/media/jellyfish-10-mbps-hd-h264.mkv";
 
-		glutMainLoop();
+        glutMainLoop();
     }
 
     resetVLC();
