@@ -63,9 +63,6 @@ static void* lock(void* data, void** p_pixels)
 
     *p_pixels = context->texture_pixels;
 
-    unsigned int w, h;
-    libvlc_video_get_size(context->mp, 0, &w, &h);
-
     return NULL;
 }
 
